@@ -386,7 +386,7 @@ class Model(torch.nn.Module):
         if isinstance(weights, (str, Path)):
             self.overrides["pretrained"] = weights  # remember the weights for DDP training
             weights, self.ckpt = load_checkpoint(weights)
-        self.model.load(weights)
+        self.model.load(weights, weights_only=False)
         return self
 
     def save(self, filename: str | Path = "saved_model.pt") -> None:
